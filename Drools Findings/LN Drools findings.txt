@@ -1,14 +1,6 @@
 -> Rule Techonology :
 Drools, Rule Engine..
-	1.cd-rule-engine
-		src/main/resources/rules
-			client_rules_test.drl
-			debug.drl
-			ruleenginetest.drl
-	2.examen_client
-		src/main/resources
-			boa_client_rules.drl
-			test_client_rules.drl
+
 
 		
 -> Spring AOP :
