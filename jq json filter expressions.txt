@@ -1,0 +1,10 @@
+(map(keys) | add | unique) as $col | map(. as $row | $cols | map($row[.]))
+(map(keys) | add | unique) as $col | map(. as $row | $col | map($row[.]))
+
+(.hits.hits[0].fields | keys) as $columns | ((.hits.hits[0].fields[] ) | add) as $values | $values
+
+(.hits.hits[0].fields | keys) as $columns |
+
+.hits.hits[0].fields[] as $row | $row
+
+(map(keys) | add | unique) as $cols | map(. as $row | $cols | map($row[.])) as $rows | $cols, $rows[] | @csv

@@ -1,0 +1,39 @@
+-> Data Binding in Angular 1 vs Angular 2 :
+	1. interpolation
+		<p>{{vm.someObject.someProperty}}</p> (Angular 1)
+		its almost similar in angular 2 and can remove vm as we usually have context with templates in angular 2,
+		<p>{{someObject.someProperty}}</p>
+	2. one-way data binding
+		in Angular 1 we used to do it using 'ng-bind'
+			<h1 ng-bind="employee.name"></h1>
+		in angular 2 we use square brackets around the property we want to bind to ,
+			<h1 [innerText]="employee.name"></h1> 
+			We actually can take any HTML property, like innerText, wrap it in square braces and you can then bind it to a model. 
+			for ex.
+	3. Two-way data binding
+		in angular 1 we didi it using ng-model
+			<input ng-model="employee.name"/>  
+		in angular 2 there is also a ngModel property for form inputs but we use it in different way,
+			<input [(ngModel)]="employee.name"/>  
+			this [()] is called Banana in a box syntax and its symbolizes two way data binding.
+	4. Event Binding 
+		In Angular 1 we used built-in directives to bind events,such as ngClick,ngChange,ngFocus,....
+			<button ng-click="vm.sendForm()">Send</h1> 
+		In Angular 2 we wrap the name of the event with parenthesis to denote an event binding, for ex,
+			<button (click)="sendForm()">Send</h1> 
+			So, with properties we use square brackets, but with events we use parenthesis.
+-> Service  vs facroty :
+	service is the function which will be new'ed , new myServiceFUnction();
+	factory function will be invoked, myFactoryFFunction();
+	service must always be an object while factory can be an object, a function reference, or any value at all.
+-> Arrow functions in javascript:
+	are a shorter sytax than a function expression and does not bind its own this,argumants,super or new.target
+-> Angular JS filter
+	{{array_to_filter | filter : expression : comparator : anyPropertyKey }}
+		here expression can be a  string, Object or function 
+			string = return those items(String/object) of array which contain this string 
+			object = a pattern object , for ex. {name :'M',phone:'1'} means name propererty containing 'M' and phone property containing '1'.
+						{$:'text'} $ here is to match any property , this $ can be changed to any other character by supplying value for 'anyPropertyKey'C:\Users\alokm\Desktop\Notepad++\data binding angular 1 vs 2.txt
+-> bindToController :
+	in case of directives, when we use 'this' instead of '$scope' with controllers, a problem arises when we use isolated scope.As,in controller, isolated scope properties are accessed using $scope only but we are already accessing scope proeprties using 'this'.And we can use both 'this' and '$scope' ona single controller.
+		when we specify 'bindToController' to true on a directive, directive's isolated scope properties are bound to controller and we can access those properties using 'this' on view.

@@ -1,0 +1,46 @@
+-> Rule Techonology :
+Drools, Rule Engine..
+	1.cd-rule-engine
+		src/main/resources/rules
+			client_rules_test.drl
+			debug.drl
+			ruleenginetest.drl
+	2.examen_client
+		src/main/resources
+			boa_client_rules.drl
+			test_client_rules.drl
+
+		
+-> Spring AOP :
+	Cross Curring Concerns 
+		The majority of the aplications we design will contain common functionality that spans layers and tiers.This functionality typically supports operations such authentication, authorization, caching, communication, exception management, Logging, instrumentation and validation.Such functionlaity is generally described as cross-cutting concern because it affects the entire application and should be centralized in one location in the code where possible.For example, If code that generates log entries and writes to the application logs is scattered throughout your layers and tiers, and the requirement related to these concerns change (such as logging to different location), you may have to update the relevant code throughout the entire system.Instead, If you centralize the logging code, you can chnage the behaviour bychanging the code in the just one location.
+		
+		In Spring a pointcut expression is used to determine whether advice needs to be executed or not 
+			for ex, 	
+				@PointCut("within(com.journaldev.spring.service.*)")
+			sp there  are chances that these advices may get applied to some beans where its not intended.
+			Thats why we create a custome annotation and annotae the method where we want the advice to be applied.
+				pulic @interface Loggable{
+				
+				}
+				
+				@Aspect 
+				public class EmployeeAnnotationAspect{
+					@Before("@annotation(com.journaldev.spring.aspect.Loggable)")
+					public void myAdvice(){
+						System.out.println("executing my advice");
+					}
+				}
+	
+-> Spring fundamentals :
+
+
+
+-> SQL replace NULL with empty String
+	There are two ways to replace NULL with blank values in SQL Server, function ISNULL() and COALESCE()
+
+-> Unable to install a breakpoint in (Eclipse debug mode error):
+	configure build path- java compiler- add line number attribute
+	
+				
+	
