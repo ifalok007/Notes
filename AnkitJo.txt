@@ -1,0 +1,56 @@
+Blender software for 3d modelling outputs .obj file , while 
+hellicle stucture
+proto filament only 13
+dimer
+
+Helix 3D Geometry :
+					We are going to measure angles on the floor, about the z-axis, with 
+			0 degrees along the x-axis.  Looking down on the floor from above, 
+			the positive direction for angles will be counterclockwise. So, at 
+			90 degrees we'll be along the positive y-axis, at 180 degrees along 
+			the negative x-axis, and so on.
+
+			Let r be the radius of the helix. The helix will start at the point
+			(r,0,0). The first coordinate is the x-coordinate, the second the 
+			y-coordinate, and the third the z-coordinate. The helix starts from a 
+			point on the floor, a distance r from the corner of the room, on the 
+			x-axis.
+
+			Here's the formula for any point on the helix:
+
+			   x = r*cos(b*t)
+			   y = r*sin(b*t)
+			   z = c*t
+
+			You will have to choose the constants r, b, and c to fit your 
+			circumstances. To explain, suppose r = 3 feet, c = 0.5/360 feet, and 
+			b = 2.
+
+			When t = 0: 
+
+			   x = 3*cos(2*0) = 3
+			   y = 3*sin(2*0) = 0
+			   z = 0.5/360*0 = 0
+
+			So, we start at (3,0,0).  If t = 30 degrees:
+
+			   x = 3*cos(2*30) = 1.500
+			   y = 3*sin(2*30) = 2.598
+			   z = 0.0417
+
+			We have gone around the helix by 30 degrees and have risen 0.0417 feet 
+			from the floor.  The x- and y-coordinates give the position on the 
+			circle (the projection of the helix on the floor) and the z-coordinate 
+			gives the height of the moving point.
+
+			If t = 360 degrees:
+
+			   x = 3.000
+			   y = 0.000
+			   z = 0.500
+
+			So, we've risen 0.5 feet in one turn and are back above the starting 
+			point.
+
+			The number c gives the pitch or, rather, 360*c is the amount risen in 
+			one turn.
