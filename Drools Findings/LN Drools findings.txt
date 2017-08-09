@@ -1,9 +1,9 @@
--> Rule Techonology :
+---> Rule Techonology :
 Drools, Rule Engine..
 
 
 		
--> Spring AOP :
+---> Spring AOP :
 	Cross Curring Concerns 
 		The majority of the aplications we design will contain common functionality that spans layers and tiers.This functionality typically supports operations such authentication, authorization, caching, communication, exception management, Logging, instrumentation and validation.Such functionlaity is generally described as cross-cutting concern because it affects the entire application and should be centralized in one location in the code where possible.For example, If code that generates log entries and writes to the application logs is scattered throughout your layers and tiers, and the requirement related to these concerns change (such as logging to different location), you may have to update the relevant code throughout the entire system.Instead, If you centralize the logging code, you can chnage the behaviour bychanging the code in the just one location.
 		
@@ -24,15 +24,35 @@ Drools, Rule Engine..
 					}
 				}
 	
--> Spring fundamentals :
+---> Spring fundamentals :
 
 
 
--> SQL replace NULL with empty String
+---> SQL replace NULL with empty String
 	There are two ways to replace NULL with blank values in SQL Server, function ISNULL() and COALESCE()
 
--> Unable to install a breakpoint in (Eclipse debug mode error):
+---> Unable to install a breakpoint in (Eclipse debug mode error):
 	configure build path- java compiler- add line number attribute
 	
-				
+--->Checklist:
+	1. Angular clean code 
+	2. An Angular JS playbook
+	3. Mockups (Ln bulletin)
+	4. Spring boot 
+	5. Drools (low priority)
+	6. uib-modal dissection
+	7. font-awesome
+	8. token based vs cookie based authentication ,JSON Web Tokens (JWT) https://auth0.com/blog/cookies-vs-tokens-definitive-guide/
+	9. NgModel Controller
+	10. Configurable directives using Providers, by supplying configuration options before directive is instantiated
+	11. Decorators to decorate services before use
+CK:
+	1. Angular UI router States
+	2. Directives 
+	3.	
+
+---> Organizing multi-module maven project in eclipse project explorer (show child modules as child nodes):
+	windows->Preferences-> Maven->Hide foders of physically nested modules and then re-import
+				or 
+	configure working sets 
 	
