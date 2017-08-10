@@ -1,18 +1,19 @@
-eclipse shortcuts : 
-	files :
+---> eclipse shortcuts : 
+	
+	---> Files :
 		Jump to file | Ctrl+Shift+R 
 		Save all files | Ctrl+Shift+S
 		Close file | Ctrl+F4
 		Close all files | Ctrl+Shift+F4
 		
-	find : 
+	---> Find : 
 		Goto line | Ctrl+L
 		Find | Ctrl+F
 		Find next | Ctrl+K
 		Find prev | Ctrl+Shift+K
 		Search workspace | Ctrl+H
 		
-	Java navigation :
+	---> Java navigation :
 		Goto declaration | F3
 		Find references in file | Ctrl+Shift+U (after selecting the text)
 		Find references in workspace | Ctrl+Shift+G (first select the text and then press Ctrl+Shift+G)
@@ -26,7 +27,7 @@ eclipse shortcuts :
 		Show Javadoc | F2
 		Open call hierarchy | Ctrl+Alt+H
 	
-	General editing
+	---> General editing
 		Move line(s) up or down | Alt+Arrow
 		Expand selection to enclosing element | Alt+Shift+Up
 		Expand selection to next element(downwards) | Alt+Shift+Right 
@@ -36,7 +37,7 @@ eclipse shortcuts :
 		Convert to lowercase | Ctrl+Shift+Y
 		Convert to uppercase | Ctrl+Shift+X
 	
-	Java editing
+	---> Java editing
 		Reformat | Ctrl+Shift+F
 		Organize Imports | Ctrl+Shift+O
 		Comment | Ctrl /
