@@ -56,3 +56,8 @@ CK:
 				or 
 	configure working sets 
 	
+---> <pluginManagement> vs <plugin> maven :
+	Plugin configuration can be configured to be inherited by child POMs( or child modules) by using <pluginManagement>.Plugin Configration added inside <pluginManagement> doesn't apply to the POM (or project) it is defined in rather its intended for child POMs or projects.
+	from child POMs you need to reference this parent plugin configuration to inherit the configuration, moreover child plugins can override parent pluginManagement definintion.
+		
+	
