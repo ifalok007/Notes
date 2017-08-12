@@ -60,9 +60,18 @@ CK:
 	Plugin configuration can be configured to be inherited by child POMs( or child modules) by using <pluginManagement>.Plugin Configration added inside <pluginManagement> doesn't apply to the POM (or project) it is defined in rather its intended for child POMs or projects.
 	from child POMs you need to reference this parent plugin configuration to inherit the configuration, moreover child plugins can override parent pluginManagement definintion.
 		
---> Combining Configuration Styles in Using Spring 4 (xml+java)
+---> Combining Configuration Styles in Using Spring 4 (xml+java)
 		http://docs.spring.io/spring-javaconfig/docs/1.0.0.M4/reference/html/ch06.html
 		
---> Advantage and disadvantages of using XML config vs annotation
+---> Advantage and disadvantages of using XML config vs annotation
 	XML configuration can be shared amaong different programming environments but not annotations
 	annotations are attached to artifact they describe, thats a 'pro' point of annaotation
+	
+---> Unit testing Private methods:
+	1.#Using Bytecode manipulator framework like PowerMock with mockito#
+	2.By refactoring by changing private access modifier to default 
+		as test classes are placed in same package yet in different folder(src/main/test)
+			src/main/java
+				com.infosys.fingerprintscanner.scanner
+			src/test/java
+				com.infosys.fingerprintscanner.scanner
