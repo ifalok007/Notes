@@ -75,3 +75,6 @@ CK:
 				com.infosys.fingerprintscanner.scanner
 			src/test/java
 				com.infosys.fingerprintscanner.scanner
+				
+---> Differential backup fo database in SqlServer
+	A differential backup is based on the most recent, previous full data backup. A differential backup captures only the data that has changed since that full backup.
