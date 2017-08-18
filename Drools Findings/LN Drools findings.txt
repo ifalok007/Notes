@@ -89,3 +89,16 @@ CK:
 	ie 123456.789 has a scale of 3
 
 	Thus the maximum allowed value for decimal(5,2) is 999.99
+	
+---> Running tests for a particular class mvn command
+	mvn -Dtest=TstClassName test
+
+---> Spring Annotayions for configuration :
+	@Configuration : 
+	@EnableAutoConfiguration : 
+		configures application based on the classes present on class path such as if Spring data JPA present of the class path the spring will register a entity manager factory bean if the user has not done so. As user's configurations override auto configurations. Any configuration added by this annotation which is not relevant can be exculeded using exclude property on the annotations	
+			@EnableAutoConfiguration(exclude = { MetricFilterAutoConfiguration.class, MetricRepositoryAutoConfiguration.class })
+					which excludes #actuator# configuration ;
+					#Actuator# endpoints allow you to monitor and interact with your application. Spring Boot includes a number of built-in endpoints and you can also add your own. For example the health endpoint provides basic application health information.
+	@SpringBootApplication :
+		
