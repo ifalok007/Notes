@@ -57,7 +57,7 @@ CK:
 	configure working sets 
 	
 ---> <pluginManagement> vs <plugin> maven :
-	Plugin configuration can be configured to be inherited by child POMs( or child modules) by using <pluginManagement>.Plugin Configration added inside <pluginManagement> doesn't apply to the POM (or project) it is defined in rather its intended for child POMs or projects.
+	Plugin configuration can be configured to be inherited by child POMs( or child modules) by using <pluginManagement/>.Plugin Configration added inside <pluginManagement/> doesn't apply to the POM (or project) it is defined in rather its intended for child POMs or projects.
 	from child POMs you need to reference this parent plugin configuration to inherit the configuration, moreover child plugins can override parent pluginManagement definintion.
 		
 ---> Combining Configuration Styles in Using Spring 4 (xml+java)
@@ -142,4 +142,12 @@ CK:
 			╚══════════════╩═══════════════════════════════════════════════════════════════╝
 			workFlowActionMap is stored using LinkedHashMap in current project.
 --->Doubly linked list:
-	in singly linked list nodes have ponter to next node, so its feasible to traverse a singly linked list backwards . in Doubly lined list nodes have pointers to next and previous both nodes hence backward traversing is possible. LinkedHashMap uses doubly linked list with bucket data structure.
+	in singly linked list nodes have pointer to next node, so its not feasible to traverse a singly linked list backwards . in Doubly lined list nodes have pointers to next and previous both nodes hence backward traversing is possible. LinkedHashMap uses doubly linked list with bucket data structure.
+--->AVL trees and Red Black Trees :
+	in non-hight balanced Binary search tree the time complexity of searching is O(h) where is h is Height of the tree, if the hight of binary search tree is balanced with each insertion and removal of the nodes fro the BST then time complexity becomes O(log n) where n is number of nodes.AVL trees are a kind BSTs.AVL trees and Red-Black trees are hight balanced trees.In AVL trees the Balance Facoctor must not exceed 1.Balance Factor is Height of LeftSubtree - height of Right Subtree.If after any insertion/removal of a node from AVL tree makes Balance factor to 1 then the tree/subtree is rotated to make it hight balanced.
+	
+---> Binary Heap:
+	A Binary is a complete tree (in which all levels are completely filled) except for last level and the last level has all the keys as lef as possible.This property of Binary heap make them suitable to pe stored in array.A bianry Heap is either min-heap or max-heap.
+	Max-heap parent key is greater than both child keys and this is true for recursively all its subtrees and same goes with Min-heap.
+	Binary Heap are very usefull in implementing efficient prority queues which are used for job scheduling processes in OS.Priority queues are also used in Dijkastr's and Prim's Graph algos.
+	 
