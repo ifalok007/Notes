@@ -150,4 +150,7 @@ CK:
 	A Binary is a complete tree (in which all levels are completely filled) except for last level and the last level has all the keys as lef as possible.This property of Binary heap make them suitable to pe stored in array.A bianry Heap is either min-heap or max-heap.
 	Max-heap parent key is greater than both child keys and this is true for recursively all its subtrees and same goes with Min-heap.
 	Binary Heap are very usefull in implementing efficient prority queues which are used for job scheduling processes in OS.Priority queues are also used in Dijkastr's and Prim's Graph algos.
-	 
+---> Preventing CSS inheritance :
+	in CSS there is not parent selector so far so you have to use child selctors to override styles of parent element.
+	Or you can write selectors with high specificity so that styling does't cascade to unwanted elements.
+	eventually Cascading is sort of the whole point of Cascading Style Sheets, hence the name.
