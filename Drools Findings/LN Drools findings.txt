@@ -154,3 +154,14 @@ CK:
 	in CSS there is not parent selector so far so you have to use child selctors to override styles of parent element.
 	Or you can write selectors with high specificity so that styling does't cascade to unwanted elements.
 	eventually Cascading is sort of the whole point of Cascading Style Sheets, hence the name.
+---> hibernate Revisit :
+	proxy objects for lazy loading 
+	how JDBC does transacton management ? Hibernate makes Transaction Management very easy for developer.
+		things involved in JDBC transaction and rollback(setting autoCommit to false before executing JDBC queries and then calling commit() manually after query executions, setting savePoints to rollback transaction to a specific state of the database)
+	JDBC api thorws SQLException which is a checked exception , Hibernate throws JDBCException which is un-ckecked exception.
+	---> hibernate criteria :
+		criteria API is for retrieving Entities by composing Criterion Objects ,using criteria API we can place varibale number of condiitons on ResuktSet to get desired data by testing the ResultSet data againt all criterions.
+		for ex. 
+			List<cat> cats = session.createCriteria(Cat.class).add(Restrictions.like("name","IZ%")).add(Restrictions.gt("weight",new Float(minWeight))).addOrder(Order.asc("age")).list();
+				methods names in Creteria API are self-explanatory.
+	
