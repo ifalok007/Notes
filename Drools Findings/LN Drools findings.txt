@@ -166,6 +166,27 @@ CK:
 		for ex. 
 			List<cat> cats = session.createCriteria(Cat.class).add(Restrictions.like("name","IZ%")).add(Restrictions.gt("weight",new Float(minWeight))).addOrder(Order.asc("age")).list();
 				methods names in Creteria API are self-explanatory.
+	---> @Entity vs @Embeddeble
+			Classes annotated as @Entity has independent existence in DB and have identities(IDs), while @Embeddeble classes are doesn't have independent existence ,its instances are stored as intrinsic part of owning Entity and share the identity of Entity, such as Employee and Address . Employee is an entity but Address in Embeddeble entity as it can not exist without Employee.
+			
+			Embeddable classes are used to represent the state of an entity but don’t have a persistent identity of their own, unlike entity classes. Instances of an embeddable class share the identity of the entity that owns it. Embeddable classes exist only as the state of another entity. An entity may have single-valued or collection-valued embeddable class attributes.
+			
+				@Embeddeble
+				public class ZipCode{
+					String zip;
+					String plusFour;
+				}
+				 
+				@Entity 
+				public class Address{
+					@Id
+					Long id;
+					@Embedded //not required actually
+					ZipCode zip;
+				}
+	---> @Transactional
+			annotation attributes -: readOnly:true/false, transactionPropagation :../.., isolation:read_committed/read_uncommitted/repeatable_read
+		
 ---> Debugging Skills
 	A lot of people focus on tools and languages and frameworks for debugging but there are some meta-techniques which, if you practice, are really helpful in fixing bugs in lesser amount of time.
 	Languages may come and go and so will IDEs and debuggers, but the ability to discern under which rock your bug is hiding is one that will stay with you forever.
