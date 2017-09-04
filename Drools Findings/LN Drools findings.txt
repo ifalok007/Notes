@@ -1,8 +1,24 @@
+---> Debugging Skills
+	A lot of people focus on tools and languages and frameworks for debugging but there are some meta-techniques which, if you practice, are really helpful in fixing bugs in lesser amount of time.
+	Languages may come and go and so will IDEs and debuggers, but the ability to discern under which rock your bug is hiding is one that will stay with you forever.
+	But one can not deny the amount of ease IDEs and tools add to our debugging.Knowledge of IDE debuggers is very important IMHO.
+	"IF YOU HAVE BEEN LOOKING FOR A BUG FOR A RELATIVELY LONG TIME AND CAN'T FIND IT THEN YOU ARE LOOKING IN WRONG PLACE."
+	Here are a few way shared by various developpers using which one can improve his/her debugging :
+	1.Be disciplined. Debugging is a process, said one developer, not a series of random events. Don't randomly tweak knobs; follow the code's execution process. Just like fixing a lawnmower, he said. Does part A get the input it needs? How about the output? If that's OK, move on.
+	
+	2.To improve your skills, debug other people's code rather than your own. It will be easier to see the faults in the other person's assumptions than it is to see your own. You might do this as part of a cross-peer code review and cross-peer debugging. You will develop the ability to recognize the common causes of defects more quickly, promised one developer, and teach you to recognize (and abandon) your own bad development practices.
+	
+	3.Pretend you're the compiler. Find and correct as many errors as you can before pressing the Compile button. While most modern IDEs include integrated debuggers (like Visual Studio's Intellisense), you'll learn less from their automation than you will from consciously examining the process. (The same way you'll never learn to spell correctly by relying on a spell checker to do all the work.)
+	
+	4.Learn to fix bugs as early in the development process as you can. That might mean something formalized, such as test-driven development. That also means devoting time to debugging your design instead of barreling into coding.
+	
+	5.Debugging is easiest when you can hold the whole system in your head. Don't make the mistake of focusing in on only one part of an application. Pay attention to the interrelationships between modules. Read the code at multiple levels of abstraction, advised one programmer. "Finding the bug is the hardest part, and it takes clear understanding of what multiple pieces of the code are doing," she said.
+	
+	6.(my favoruit) Part of the same bit of advice, I think, is someone else's suggestion: gain a good understanding of the system one level down from what you are working on. "If you are debugging a system level C program, it helps to know some assembly and something about the OS," explained a system software lead engineer. "If you are debugging a J2EE app, it helps to know something about Java threads, RMI and GC." In many cases, he pointed out, error messages come from that one-level-down. "If you can understand what that means, it will help you figure out what is going wrong at your level of abstraction," he explained.
+
 ---> Rule Techonology :
 Drools, Rule Engine..
 
-
-		
 ---> Spring AOP :
 	Cross Curring Concerns 
 		The majority of the aplications we design will contain common functionality that spans layers and tiers.This functionality typically supports operations such authentication, authorization, caching, communication, exception management, Logging, instrumentation and validation.Such functionlaity is generally described as cross-cutting concern because it affects the entire application and should be centralized in one location in the code where possible.For example, If code that generates log entries and writes to the application logs is scattered throughout your layers and tiers, and the requirement related to these concerns change (such as logging to different location), you may have to update the relevant code throughout the entire system.Instead, If you centralize the logging code, you can chnage the behaviour bychanging the code in the just one location.
@@ -186,22 +202,46 @@ CK:
 				}
 	---> @Transactional
 			annotation attributes -: readOnly:true/false, transactionPropagation :../.., isolation:read_committed/read_uncommitted/repeatable_read
+---> SCSS : (Sassy CSS)
+	1. $ to set varibales
+	2. mixins let us group css declarations at one place and use them elsewhere. Mixins can accept argument and make use of that 	,for ex.
+			@mixin border-radius($radius) { //declaring mixin with name border-radius which takes radius as argument
+				-webkit-border-radius: $radius;
+				-moz-border-radius: $radius;
+				-ms-border-radius: $radius;
+				border-radius: $radius;
+			}
+
+			.box { @include border-radius(10px); } //using mixin by passing the argument
+	3. @extend is most important feature of scss , its lets you share css properties from one selector to other , for ex,
+				.message {
+				  border: 1px solid #ccc;
+				  padding: 10px;
+				  color: #333;
+				}
+
+				.success {
+				  @extend .message;
+				  border-color: green;
+				}
+
+				.error {
+				  @extend .message;
+				  border-color: red;
+				}
+	4. @include, @each, @if ......
+	5. ampersand in SCSS
 		
----> Debugging Skills
-	A lot of people focus on tools and languages and frameworks for debugging but there are some meta-techniques which, if you practice, are really helpful in fixing bugs in lesser amount of time.
-	Languages may come and go and so will IDEs and debuggers, but the ability to discern under which rock your bug is hiding is one that will stay with you forever.
-	But one can not deny the amount of ease IDEs and tools add to our debugging.Knowledge of IDE debuggers is very important IMHO.
-	"IF YOU HAVE BEEN LOOKING FOR A BUG FOR A RELATIVELY LONG TIME AND CAN'T FIND IT THEN YOU ARE LOOKING IN WRONG PLACE."
-	Here are a few way shared by various developpers using which one can improve his/her debugging :
-	1.Be disciplined. Debugging is a process, said one developer, not a series of random events. Don't randomly tweak knobs; follow the code's execution process. Just like fixing a lawnmower, he said. Does part A get the input it needs? How about the output? If that's OK, move on.
+---> $httpParamSerializer
 	
-	2.To improve your skills, debug other people's code rather than your own. It will be easier to see the faults in the other person's assumptions than it is to see your own. You might do this as part of a cross-peer code review and cross-peer debugging. You will develop the ability to recognize the common causes of defects more quickly, promised one developer, and teach you to recognize (and abandon) your own bad development practices.
+---> button [type='submit' type='button']
+	button type="submit" is by default even if you dont specify anything in type attribute on button element. type="button" has no default behavior
 	
-	3.Pretend you're the compiler. Find and correct as many errors as you can before pressing the Compile button. While most modern IDEs include integrated debuggers (like Visual Studio's Intellisense), you'll learn less from their automation than you will from consciously examining the process. (The same way you'll never learn to spell correctly by relying on a spell checker to do all the work.)
-	
-	4.Learn to fix bugs as early in the development process as you can. That might mean something formalized, such as test-driven development. That also means devoting time to debugging your design instead of barreling into coding.
-	
-	5.Debugging is easiest when you can hold the whole system in your head. Don't make the mistake of focusing in on only one part of an application. Pay attention to the interrelationships between modules. Read the code at multiple levels of abstraction, advised one programmer. "Finding the bug is the hardest part, and it takes clear understanding of what multiple pieces of the code are doing," she said.
-	
-	6.(my favoruit) Part of the same bit of advice, I think, is someone else's suggestion: gain a good understanding of the system one level down from what you are working on. "If you are debugging a system level C program, it helps to know some assembly and something about the OS," explained a system software lead engineer. "If you are debugging a J2EE app, it helps to know something about Java threads, RMI and GC." In many cases, he pointed out, error messages come from that one-level-down. "If you can understand what that means, it will help you figure out what is going wrong at your level of abstraction," he explained.
+---> pseudo classes and pleudo elements
+	pseudo elemnts or classes are those which we can access using DOM interface.
+	:focus :link -> pseudo class
+	::placeholder ::after -> pseudo element
+---> Spring security
+	architecture of spring security, User storage, client integration, passwords, customizing/overriding , remember me functionality, anonymous services , Authorization with expression, Access control list (ACLs), digest authenticaation for web services
+	Authorization with expression is a recent addition ot spring security which help easing integraation with current systems.
 	
