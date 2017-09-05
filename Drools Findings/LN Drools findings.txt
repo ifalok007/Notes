@@ -202,6 +202,18 @@ CK:
 				}
 	---> @Transactional
 			annotation attributes -: readOnly:true/false, transactionPropagation :../.., isolation:read_committed/read_uncommitted/repeatable_read
+	--->	@OneToMany and @ManyToOne
+			@OneToMany(mappedBy="forignkey_field_name_not_table_column_name",fetch=FetchType.EAGER,cascade=CascadeType.ALL)
+			
+			@ManyToOne
+			@JoinColumn(name="forignKey_column_name")
+			Object forignkey_field_name_not_table_column_name;
+			
+			Entity with foreign key is the owniner of the relationship.
+	---> LazyInitializationException 
+			
+	---> HQL Joins:
+			inner join, left outer join, right outer join, join fetch=?
 ---> SCSS : (Sassy CSS)
 	1. $ to set varibales
 	2. mixins let us group css declarations at one place and use them elsewhere. Mixins can accept argument and make use of that 	,for ex.
