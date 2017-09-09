@@ -202,7 +202,7 @@ CK:
 				}
 	---> @Transactional
 			annotation attributes -: readOnly:true/false, transactionPropagation :../.., isolation:read_committed/read_uncommitted/repeatable_read
-	--->	@OneToMany and @ManyToOne
+	---> @OneToMany and @ManyToOne
 			@OneToMany(mappedBy="forignkey_field_name_not_table_column_name",fetch=FetchType.EAGER,cascade=CascadeType.ALL)
 			
 			@ManyToOne
@@ -242,7 +242,13 @@ CK:
 				  border-color: red;
 				}
 	4. @include, @each, @if ......
-	5. ampersand in SCSS
+	5. ampersand(&) in SCSS is used as parent selector which is missing in plain css,
+		ex.	
+			.parent{			compiles-to		.parent.child{
+				&.child{		===========>	}				
+				
+				}
+			}
 		
 ---> $httpParamSerializer
 	
@@ -256,4 +262,30 @@ CK:
 ---> Spring security
 	architecture of spring security, User storage, client integration, passwords, customizing/overriding , remember me functionality, anonymous services , Authorization with expression, Access control list (ACLs), digest authenticaation for web services
 	Authorization with expression is a recent addition ot spring security which help easing integraation with current systems.
+---> Factory Pattern
+	class FilterFactory (returns Filter instances on basis of FilterOperator like EQUAL, NOT_EQUAL, LESS_THAN, CONTAINS_STRING etc)
+		-EqualToFilter implements Filter
+			-
+		-ContainsStringFilter implements Filter 
+	interface Filter
+		-isMatch()
+---> $evalAsync 
+	The asyncEval is after the DOM construction but before the browser renders.I believe that is the time you want to attach the jquery plugins. otherwise you will have flicker. if you really want to do after the browser render you can do $defer(fn, 0);
 	
+	https://github.com/angular/angular.js/issues/734#issuecomment-3657272/#
+
+---> make tbody scrollable with fixed theader
+		help https://bootsnipp.com/snippets/jvPA9
+		
+---> SET vs SELECT in SQL SERVER
+
+		1. SET is the ANSI standard for variable assignment, SELECT is not.
+		2. SET can only assign one variable at a time, SELECT can make multiple assignments at once.
+		3. If assigning from a query, SET can only assign a scalar value. If the query returns multiple values/rows then SET will raise an error. SELECT will assign one of the values to the variable and hide the fact that multiple values were returned (so you'd likely never know why something was going wrong elsewhere - have fun troubleshooting that one)
+		4. When assigning from a query if there is no value returned then SET will assign NULL, where SELECT will not make the assignment at all (so the variable will not be changed from its previous value)
+		5. As far as speed differences - there are no direct differences between SET and SELECT. However SELECT's ability to make multiple assignments in one shot does give it a slight speed advantage over SET.
+---> ng-attr-id, ng-attr-name, ng-attr-for 
+		dynamic attributes in agularjs
+---> Spring Security Annotation used in CL
+	@permitAll -> can use with method annotated with @path , all request are allowed on that path 
+	@RolesAllowed -> 

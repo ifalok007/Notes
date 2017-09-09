@@ -7,7 +7,7 @@
 		in Angular 1 we used to do it using 'ng-bind'
 			<h1 ng-bind="employee.name"></h1>
 		in angular 2 we use square brackets around the property we want to bind to ,
-			<h1 [innerText]="employee.name"></h1> 
+			<h1 [innerText]="employee.name"></h1>
 			We actually can take any HTML property, like innerText, wrap it in square braces and you can then bind it to a model. 
 			for ex.
 	3. Two-way data binding
@@ -37,3 +37,13 @@
 ---> bindToController :
 	in case of directives, when we use 'this' instead of '$scope' with controllers, a problem arises when we use isolated scope.As,in controller, isolated scope properties are accessed using $scope only but we are already accessing scope proeprties using 'this'.And we can use both 'this' and '$scope' ona single controller.
 		when we specify 'bindToController' to true on a directive, directive's isolated scope properties are bound to controller and we can access those properties using 'this' on view.
+---> Precision vs Scale
+	Numeric precision refers to the maximum number of digits that are present in the number.
+
+	ie 1234567.89 has a precision of 9
+
+	Numeric scale refers to the maximum number of decimal places
+
+	ie 123456.789 has a scale of 3
+
+	Thus the maximum allowed value for decimal(5,2) is 999.99
