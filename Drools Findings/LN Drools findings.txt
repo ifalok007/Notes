@@ -289,3 +289,34 @@ CK:
 ---> Spring Security Annotation used in CL
 	@permitAll -> can use with method annotated with @path , all request are allowed on that path 
 	@RolesAllowed -> 
+	---> pluralsight course
+		->multiple <mvn:resources/> can be used in a single spring context configuration file.
+		-> #ContentNegotiatingViewResolver# in Spring and its use ??
+		-> spring i18n beans such as #SessionLocaleResolver#(?), #ResourceBundleMessageSource#(?), #LocaleChangeInterceptor#(?)
+		-> lots of authencition in done using LDAP or active directory server for the authentication store
+		-> authorization always follow authentication, first me make sure you ae who you are caiming to be and then authoriza them to access resources
+		-> jars 
+			spring-security-web	(contains web enabled security configurations )
+			spring-security-config (contains general security configuration)
+			commons-logging (just a facade for tying up with underlying logging mechanism)
+		-> addded DelegatingFilterProxy filter in web.xml and mapped to /*
+		-> added ContextLoaderListener and sprecified a context param 'security-config-location' with value 'WEB-INF/security-config.xml' which is used by ContextLoaderListener
+		->ContextLoaderListener class bootstraps spring security context when application's context is loaded and DelegatingFilterProxy routes all the requests through spring security so that they can be evaluated in security configuration
+		-> add a spring-secirity.xml file (keeping separate file for security configurations for separation of concerns)
+			-> added a <http> tag and enabled auto-config which probably serves default lgin page when user is not authorised access a resource
+			-> added <authentication-manager><authentication-provider><user-service>, for in-memory user authentication, define users and theirs passwords with their roles 
+			-> as spring-security context is loaded when application contexts loads so in memory authentication is not feasible for production like applications as adding/or removing user would require re-deployment of application.
+			this was simplest spring security configuration
+		--> Now we will authenticate user by using database ,
+				-> for that first we need to install a database, i used mysql 5.xml
+				-> create two tables 
+					1. User table - stores user name and passwords (and one extra 'enabled' column)
+					2. Authorities table - stores rights for a given user 
+		--> Now for data base conection and information retrieval we will ad some jars like mysql-connector jar and spring-jdbc jar.	
+		-->	user details and authorities are stored in data base , we will configure a DataSource (DriverClassName, url,username,password) for database connection and a another JdbcDaoImpl bean which retrieves user details from database for authentication in security-config.xml file and modify our <authentication-provider> to use JdbcDaoImpl for user details authentication instead of in-memory authentication.
+						<authentication-provider user-service-ref="id_of_JdbcDaoImpl_bean">
+						or
+			we can get rid of that JdbcDaoImpl bean, like below 	
+					<authentication-provider>
+						<jdbc-user-service data-source-ref="id_of_dataSource_bean">
+					</authentication-provider>
