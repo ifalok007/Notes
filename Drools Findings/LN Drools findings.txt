@@ -330,3 +330,10 @@ CK:
 				instantiate at the time of class loading, instantiate at instance variable level
 				
 		if we are instantiating the singleton class insise a staic method of singleton class (say getInstance()) then its called lazy loading , otherwise if we are instatiation the class at isntance variable level then its called eager loading as instantiation is done at the time of class loading so even if user doen't use it the class will get instantiated.
+			#Bill Plaugh# implementation of Singleton pattern by using a static inner class inside the singleton class
+			#Joshua Bloch# implementation of Singleton pattern using Enums (overcome access via reflection)
+---> Enum 
+	its better if enum has private constructor as user can not invoke enum's constructor.The private constructor of enum will be invoked for each value to initialize the enum. 
+		accessed a private member of a enum from outside the enum, NoteType.SOME_NOTE.noteType , here noteType is private to enum NoteType !!
+			it happened because my enum was nested inside annother class, and in java you can always access private members of a nested types from containing type.
+			
