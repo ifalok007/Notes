@@ -1,0 +1,2 @@
+---> Updating a local repository with changes from a Github repository
+	git pull origin master

@@ -320,3 +320,13 @@ CK:
 					<authentication-provider>
 						<jdbc-user-service data-source-ref="id_of_dataSource_bean">
 					</authentication-provider>
+---> Singleton pattern
+
+		1. make constructor private to prevent manual instatiation 
+		2. add a static method to return the instance of the singleton class.
+			-> lazy isntantiation 
+				instantiate only when getInstance() method is called
+			-> Eager Instantiation
+				instantiate at the time of class loading, instantiate at instance variable level
+				
+		if we are instantiating the singleton class insise a staic method of singleton class (say getInstance()) then its called lazy loading , otherwise if we are instatiation the class at isntance variable level then its called eager loading as instantiation is done at the time of class loading so even if user doen't use it the class will get instantiated.
