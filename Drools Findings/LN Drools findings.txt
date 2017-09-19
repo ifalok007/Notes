@@ -337,3 +337,19 @@ CK:
 		accessed a private member of a enum from outside the enum, NoteType.SOME_NOTE.noteType , here noteType is private to enum NoteType !!
 			it happened because my enum was nested inside annother class, and in java you can always access private members of a nested types from containing type.
 			
+---> Getting Logged-in user details from ThreadContext(project specific class not part of JDK) ?? -: 
+
+---> Jackson Deserialization(unmarshalling|from json to java) Annotations
+	#@JsonCreator# (usually used with @JsonProperty to specify peroperty name or order)
+		It’s very helpful when we need to deserialize some JSON that doesn’t exactly match the target entity we need to get.
+	#@JsonValue#  
+
+---> Mapping sql query parameters with enum :
+	for ex, 	jdbcTemplate.update("SP_name :empId :empRole");
+			empRole in our entity class is enum type
+		Generally we use BeanPropertySqlParameterSource(entity) class to map sql query paramters with entity properties, 
+		in our case, we can call	
+			beanPropertySqlParametreSource.registerSqlType("empRole", Types.VARCHAR)
+		to tell jdbcTemplate to map empRole as varchar is sql query paramter.
+		i think enum should override toString() to make it work.not sure though
+			
