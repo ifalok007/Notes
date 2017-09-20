@@ -340,10 +340,28 @@ CK:
 ---> Getting Logged-in user details from ThreadContext(project specific class not part of JDK) ?? -: 
 
 ---> Jackson Deserialization(unmarshalling|from json to java) Annotations
-	#@JsonCreator# (usually used with @JsonProperty to specify peroperty name or order)
+	#@JsonCreator# (usually used with #@JsonProperty# to specify peroperty name or order, mostly applied at constructor level)
 		It’s very helpful when we need to deserialize some JSON that doesn’t exactly match the target entity we need to get.
-	#@JsonValue#  
-
+		 for ex enum to String
+	#@JsonValue# used on a method which tells how this instance will be serailized (from java to json)
+		public enum TypeEnumWithValue {
+			TYPE1(1, "Type A"), TYPE2(2, "Type 2");
+		 
+			private Integer id;
+			private String name;
+		 
+			@JsonValue
+			public String getName() {
+				return name;
+			}
+		}
+	#@JsonInclude# mostly used at class (model class) level to  exclude empty/null/default values
+			@JsonInclude(JsonInclude.Include.NON_NULL) to exclude null values from serialization
+	#@JsonIgnoreProperties#
+		can be used to suppress serialization of properties during serialization 
+			@JsonIgnoreProperties({'internalId', 'secretKey'})
+		can be used to ignore processing of JSON properties during deserialization  
+			@JsonIgnoreProperties(ignoreUnknown = true)
 ---> Mapping sql query parameters with enum :
 	for ex, 	jdbcTemplate.update("SP_name :empId :empRole");
 			empRole in our entity class is enum type
@@ -352,4 +370,28 @@ CK:
 			beanPropertySqlParametreSource.registerSqlType("empRole", Types.VARCHAR)
 		to tell jdbcTemplate to map empRole as varchar is sql query paramter.
 		i think enum should override toString() to make it work.not sure though
+---> Java 8 collection streams and Stream Collectors :
+		Concating two Lists 
+			Stream.concat(list_one.stream(), list_two.stream()).collect(Collector.toList())
+---> Java 8 method references :
+		You use lambda expressions to create anonymous methods. Sometimes, however, a lambda expression does nothing but call an existing method. In those cases, it's often clearer to refer to the existing method by name. Method references enable you to do this; they are compact, easy-to-read lambda expressions for methods that already have a name.
+			Arrays.sort(rosterAsArray,
+				(a, b) -> Person.compareByAge(a, b)
+			);
+			is same as 
+			Arrays.sort(rosterAsArray,
+				(a, b) -> Person::compareByAge)
+			);
+			assuming Person class/enum has compareByAge method inside it.
+---> Angular One way bind Syntax (Todd Motto)
+		<p>
+		  {{ ::vm.user }}
+		</p>
+		<div ng-if="::vm.user.loggedIn"></div>
+		<div ng-class="::{ loggedIn: vm.user.loggedIn }"></div>
+		<ul>
+		  <li ng-repeat="user in ::vm.users"></li>
+		</ul>
+---> Spring JDBCTemplate batchUpdate & Simple JDBC batch query processing:
 			
+---> Quartz Job Scheduler Java (other job scheduling lib- Obsidian Scheduler):
