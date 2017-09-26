@@ -404,6 +404,9 @@ CK:
 			
 ---> Quartz Job Scheduler Java (other job scheduling lib- Obsidian Scheduler):
 
+---> $watch vs $observer
+		$observer function is present in Attribute object and it can be used inside a directive only.Use $observer only when you need to watch/observer a DOM attribute which contains inerpolation{{}}. ex <div attr1 = "name {{name}}">
+
 ---> Self Join,
 
 ---> Internal Working of HashSet and HashMap
