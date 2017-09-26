@@ -405,13 +405,85 @@ CK:
 ---> Quartz Job Scheduler Java (other job scheduling lib- Obsidian Scheduler):
 
 ---> Self Join,
+
 ---> Internal Working of HashSet and HashMap
+
 ---> @Conroller vs @RestController,
+
 ---> Dirty Read vs Phantom Read, Non-Repeatable Read,
+
 ---> @Transactional,
+
 ---> Stream Filters,
+
 ---> OSGi vs Maven,
+
 ---> Multithreading fundamentals,
+
 ---> Database fundamentals,
+
 ---> Stored Procedure vs Function,
+
 ---> LinkedList vs ArrayList
+
+---> EntityManager vs SessionFactory 
+
+---> Executor Service Example
+	UtilityClass to read, update and save
+	int totalTasks = number of iteration * number of threads
+	initialize a CountDownLatch with totalTasks
+	
+		CountDownLatch signal = new CountDownLatch(totalTasks);
+		
+		ExecutorService executor = Executors.newFixedThreadPool(UtilityClass.getThreadCount());
+		Runnable worker = new FileOperations(UtilityClass, signal);
+		while (UtilityClass.getQueue().size() > 0) {
+			executor.execute(worker);
+			try {
+				Thread.sleep(1);
+			} catch (InterruptedException e) {
+				throw new Exception(e);
+			}
+		}
+		executor.shutdown();
+
+		try {
+			signal.await();
+		} catch (InterruptedException e) {
+			throw new Exception(e);
+		}
+		UtilityClass.printResult();
+		
+		thread 
+		
+		public class FileOperations implements Runnable {
+			private CountDownLatch signal;
+			private UtilityClass base;
+
+
+			public FileOperations(UtilityClass base, CountDownLatch signal) {
+				this.base = base;
+				this.signal = signal;
+			}
+
+			//@Override
+			public void run() {
+				FileVO vo = base.getQueue().poll();
+				if (vo != null && (vo.getIterations() - 1) > 0) {
+					vo.setIterations(vo.getIterations() - 1);
+					base.getQueue().add(vo);
+				}
+				if (vo != null) {
+					base.calculateTime(vo);
+					signal.countDown();
+				}
+
+			}
+			}
+			
+		Model to work on 
+			FileVO 
+				fileName;
+				 ByteArrayOutputStream baos;
+				 int iterations;
+			
