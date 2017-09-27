@@ -333,12 +333,13 @@ CK:
 			#Bill Plaugh# implementation of Singleton pattern by using a static inner class inside the singleton class
 				public class SingletonClass{
 					private static class SingletonHelper{
-						private static final SingletonClass INSTANCE = new SingletonHelper();
+						public static final SingletonClass INSTANCE = new SingletonHelper();
 					}
 					public static SIngletonClass getInstance(){
 						return SingletonHelper.INSTANCE;
 					}
 				}
+				There's nothing really special about the nested class, it just allows the outer class to be used without immediately constructing the singleton object. Almost certainly this is entirely pointless, but it seems to please some people.
 			#Joshua Bloch# implementation of Singleton pattern using Enums (overcome access via reflection)
 ---> Enum 
 	its better if enum has private constructor as user can not invoke enum's constructor.The private constructor of enum will be invoked for each value to initialize the enum. 
@@ -407,11 +408,31 @@ CK:
 ---> $watch vs $observer
 		$observer function is present in Attribute object and it can be used inside a directive only.Use $observer only when you need to watch/observer a DOM attribute which contains inerpolation{{}}. ex <div attr1 = "name {{name}}">
 
----> Self Join,
+---> Self Join, JOIN FETCH in Hibernate 
+		---> JOIN FETCH
+		1. "FROM Employee emp JOIN emp.department dep" vs 2. "FROM Employee emp JOIN FETCH emp.department dep"
+		In this two queries, you are using JOIN to query all employees that have at least one department associated.
 
+		But, the difference is: in the first query you are returning only the Employes for the Hibernate. In the second query, you are returning the Employes and all Departments associated.
+
+		So, if you use the second query, you will not need to do a new query to hit the database again to see the Departments of each Employee.
+
+		You can use the second query when you are sure that you will need the Department of each Employee. If you not need the Department, use the first query.
+
+		If you don't use fetch and the Departments continue to be returned, is because your mapping between Employee and Department (a @OneToMany) are setted with FetchType.EAGER
+		Remember that all mapping #*ToOne# (@ManyToOne and @OneToOne) are EAGER by default.
 ---> Internal Working of HashSet and HashMap
+		HashSet uses HashMap internally to store it’s objects. Whenever you create a HashSet object, one HashMap object associated with it is also created. This HashMap object is used to store the elements you enter in the HashSet. The elements you add into HashSet are stored as keys of this HashMap object. The value associated with those keys will be a constant.
+		
+		Every constructor of HashSet class internally creates one HashMap object
+		
+		it actually creates an entry in the internally backing HashMap object with element you have specified as it’s key and constant called “PRESENT” as it’s value
 
 ---> @Conroller vs @RestController,
+		@Controller is used to mark classes as Spring MVC Controller.
+		@RestController is a convenience annotation that does nothing more than adding the @Controller and @ResponseBody annotations (see: Javadoc)
+		
+		Spring’s annotation based MVC framework simplifies the process of creating RESTful web services. The key difference between a traditional Spring MVC controller and the RESTful web service controller is the way the HTTP response body is created. While the traditional MVC controller relies on the View technology, the RESTful web service controller simply returns the object and the object data is written directly to the HTTP response as JSON/XML
 
 ---> Dirty Read vs Phantom Read, Non-Repeatable Read,
 		1.Dirty Read 
@@ -438,7 +459,7 @@ CK:
 ---> Stored Procedure vs Function,
 		Functions are computed values and cannot perform permanent environmental changes to SQL Server (i.e. no INSERT or UPDATE statements allowed).
 
-		A Function can be used inline in SQL Statements if it returns a scalar value or can be joined upon if it returns a result set.
+		A Function can be used inline in SQL Statements if it returns a scalar value or can be joined upon (ex. left join, inner join etc) if it returns a result set.
 		
 		+---------------------------------+----------------------------------------+
 		| Stored Procedure (SP)           | Function (UDF - User Defined           |
@@ -469,14 +490,21 @@ CK:
 		ArrayList<E>, on the other hand, allow fast random read access, so you can grab any element in constant time. But adding or removing from anywhere but the end requires shifting all the latter elements over, either to make an opening or fill the gap. Also, if you add more elements than the capacity of the underlying array, a new array (1.5 times the size) is allocated, and the old array is copied to the new one, so adding to an ArrayList is O(n) in the worst case but constant on average.
 
 ---> EntityManager vs SessionFactory 
-	If you want, you can always get the Hibernate Session from the JPA EntityManager. Not vice-versa
+	
 	Prefer EntityManagerFactory and EntityManager. They are defined by the JPA standard.
 
 	SessionFactory and Session are hibernate-specific. The EntityManager invokes the hibernate session under the hood. And if you need some specific features that are not available in the EntityManager, you can obtain the session by calling:
 
 		Session session = entityManager.unwrap(Session.class);
+	If you want, you can always get the Hibernate Session from the JPA EntityManager. Not vice-versa
 
----> Executor Service Example
+---> Executor Service Example (With Callable and Future API) (and There is One More FutureTask for convenience)
+	There are two ways of creating threads – one by extending the Thread class and other by creating a thread with a Runnable. However, one feature lacking in  Runnable is that we cannot make a thread return result when it terminates, i.e. when run() completes. For supporting this feature, the Callable interface is present in Java.
+	---> Callable vs Runnable
+
+		1. For implementing Runnable, the run() method needs to be implemented which does not return anything, while for a Callable, the call() method needs 	to be implemented which returns a result on completion. Note that a thread can’t be created with a Callable, it can only be created with a 			Runnable.
+		2. Another difference is that the call() method can throw an exception whereas run() cannot.
+	
 	UtilityClass to read, update and save
 	int totalTasks = number of iteration * number of threads
 	initialize a CountDownLatch with totalTasks
