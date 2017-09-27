@@ -414,6 +414,16 @@ CK:
 ---> @Conroller vs @RestController,
 
 ---> Dirty Read vs Phantom Read, Non-Repeatable Read,
+		1.Dirty Read 
+			Dirty read occurs wherein one transaction is changing the tuple/record, and a second transaction can read this tuple/record before the original change has been committed or rolled back. This is known as a dirty read scenario because there is always the possibility that the first transaction may rollback the change, resulting in the second transaction having read an invalid value. 
+
+			To understand it better,lets take a use case where on thread is viewing the record and other thread is updating the value of the record.Since the transaction isolation attribute is set to READ UNCOMMITTED.Second thread will be able to see the changes made by other thread.
+		2. Phantom read	
+			Phantom read occurs where in a transaction same query executes twice, and the second result set includes rows that weren't visible in the first result set. This situation is caused by another transaction inserting new rows between the execution of the two queries.
+			To understand it better consider  a use case where one thread is inserting the data while other thread is reading the data in different transaction.Since reader thread has isolation attribute as READ COMMITTED,reader thread will see the new rows inserted when it queries again.
+		3.Non-Repeatable Read	
+			Non Repeatable Reads happen when in a same transaction same query yields different results. This happens when another transaction updates the data returned by other transaction.
+			To understand it better lets take a use case where one thread is viewing the data and other thread is updating the data.Since isolation level is READ COMMITED,other thread will be able to view the updated changes.So in the same transaction,same query will yield different data.
 
 ---> @Transactional,
 
@@ -426,10 +436,45 @@ CK:
 ---> Database fundamentals,
 
 ---> Stored Procedure vs Function,
+		Functions are computed values and cannot perform permanent environmental changes to SQL Server (i.e. no INSERT or UPDATE statements allowed).
+
+		A Function can be used inline in SQL Statements if it returns a scalar value or can be joined upon if it returns a result set.
+		
+		+---------------------------------+----------------------------------------+
+		| Stored Procedure (SP)           | Function (UDF - User Defined           |
+		|                                 | Function)                              |
+		+---------------------------------+----------------------------------------+
+		| SP can return zero , single or  | Function must return a single value    |
+		| multiple values.                | (which may be a scalar or a table).    |
+		+---------------------------------+----------------------------------------+
+		| We can use transaction in SP.   | We can't use transaction in UDF.       |
+		+---------------------------------+----------------------------------------+
+		| SP can have input/output        | Only input parameter.                  |
+		| parameter.                      |                                        |
+		+---------------------------------+----------------------------------------+
+		| We can call function from SP.   | We can't call SP from function.        |
+		+---------------------------------+----------------------------------------+
+		| We can't use SP in SELECT/      | We can use UDF in SELECT/ WHERE/       |
+		| WHERE/ HAVING statement.        | HAVING statement.                      |
+		+---------------------------------+----------------------------------------+
+		| We can use exception handling   | We can't use Try-Catch block in UDF.   |
+		| using Try-Catch block in SP.    |                                        |
+		+---------------------------------+----------------------------------------+
 
 ---> LinkedList vs ArrayList
+		LinkedList and ArrayList are two different implementations of the List interface. LinkedList implements it with a doubly-linked list. ArrayList implements it with a dynamically re-sizing array.
+		
+		LinkedList<E> allows for constant-time insertions or removals using iterators, but only sequential access of elements. In other words, you can walk the list forwards or backwards, but finding a position in the list takes time proportional to the size of the list. Javadoc says "operations that index into the list will traverse the list from the beginning or the end, whichever is closer", so those methods are O(n/4) on average, though O(1) for index = 0.
+		
+		ArrayList<E>, on the other hand, allow fast random read access, so you can grab any element in constant time. But adding or removing from anywhere but the end requires shifting all the latter elements over, either to make an opening or fill the gap. Also, if you add more elements than the capacity of the underlying array, a new array (1.5 times the size) is allocated, and the old array is copied to the new one, so adding to an ArrayList is O(n) in the worst case but constant on average.
 
 ---> EntityManager vs SessionFactory 
+	If you want, you can always get the Hibernate Session from the JPA EntityManager. Not vice-versa
+	Prefer EntityManagerFactory and EntityManager. They are defined by the JPA standard.
+
+	SessionFactory and Session are hibernate-specific. The EntityManager invokes the hibernate session under the hood. And if you need some specific features that are not available in the EntityManager, you can obtain the session by calling:
+
+		Session session = entityManager.unwrap(Session.class);
 
 ---> Executor Service Example
 	UtilityClass to read, update and save
