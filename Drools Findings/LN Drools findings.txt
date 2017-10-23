@@ -563,3 +563,14 @@ CK:
 				 ByteArrayOutputStream baos;
 				 int iterations;
 			
+---> SQL Server datatype datetime2(fractional seconds precision)
+		Defines a date that is combined with a time of day that is based on 24-hour clock. datetime2 can be considered as an extension of the existing datetime type that has a larger date range, a larger default fractional precision, and optional user-specified precision
+		
+---> All About floats
+		if a parent container has all the floating childs, the height of parent element would collapse to nothing.
+		http://css-tricks.com/all-about-floats/
+		
+---> hardening 
+		and extra sprint to clear all technical debt of last sprints 
+---> Strategy Pattern	
+---> Oopen/close principle (Object Oriented Pricipal)
