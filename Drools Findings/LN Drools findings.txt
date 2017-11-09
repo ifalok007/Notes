@@ -572,14 +572,17 @@ CK:
 		
 ---> hardening 
 		extra sprint to clear all technical debt of last sprints 
+		
 ---> Strategy Pattern	
 		eccapsulate strategy (behaviour that changes )
 ---> Oopen/close principle (Object Oriented Pricipal)
+
 ---> package-info.java file		
 		The package-info.java is a Java file that can be added to any Java source package.  Its purpose is to provide a home for package level documentation and package level annotations. Simply create the package-info.java file and add the package declaration that it relates to in the file.  In fact, the only thing the package-info.java file must contain is the package declaration.
 		1. description and other related documentation for a package can be written up in the package-info.java
 		2. package level annotations(An annotation with ElementType.PACKAGE as one of its targets)
 ---> Eclipse Subversive plugin For SVN features like Repo browsing and blame (annotation)
+
 ---> Request Headers 
 	Cookie: 
 		useListCache=F;
@@ -587,18 +590,24 @@ CK:
 		RESTAPISESSIONID=....,JSESSIONID=....; _ga=GA1.1.812133076.1498460543; _gid = GA!.1.*.*
 	
 	_ga and _gid google analytics related cookies.
+	
 ---> SQL SERVER | SET NOCOUNT ON;
 		stops the message that shows the count of the number of rows affected by a Transact-SQL statement or stored procedure.
 		basically it prevents sending sql statment completion messages to the client for each statement in stored procedure and it provides significant performance boost because network traffic is greatly reduced.
+		
 ---> XSS UNSAFE PATTERN :
 		Pattern.compile("[^-+|/\\w,\\.\t ]")
 		A safe string is one with word chars [a-zA-Z_0-9] or white space char [\s] or UEL control chars [/=?&] or a dot(.).Percent signs are a risk because browser will interpret %27 as a single quite which can artificially truncate strings. 
+		
 ---> Marker Interfaces and Its uses (TIAA interview)
+
 ---> Spring Security (Authentication Provider switch from LDAP to Database and vice versa)
+
 ---> Printing Java Object with no toString overriden -:
 		Sysout(someObject) prints com.some.package.ClassName@*alphanumericString*
 		Sysout(someObject.hashCode()) prints an integer 3210992
 		convert 3210992 to hex and you will get *alphanumericString*
+		
 ---> Creating Immutable classes 
 		
 ---> The JIT Compiler -:
