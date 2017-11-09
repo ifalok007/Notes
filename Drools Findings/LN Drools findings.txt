@@ -600,7 +600,12 @@ CK:
 		A safe string is one with word chars [a-zA-Z_0-9] or white space char [\s] or UEL control chars [/=?&] or a dot(.).Percent signs are a risk because browser will interpret %27 as a single quite which can artificially truncate strings. 
 		
 ---> Marker Interfaces and Its uses (TIAA interview)
-
+		A marker interface must be empty and implementing it is meant to imply some special treatment of implementing class but it is incorrect that JVM or compiler would treat the object of the class differenty.#It has nothing to do with the compiler or the JVM#, if it was true then to write our own marker interface would require teaching compiler how to treat the object of the class implementing nw interface.
+		
+		---> How Annotations are better than Marker Interfaces?
+			They let you achieve the same purpose of conveying metadata about the class to its consumers without creating a separate type for it. Annotations are more powerful, too, letting programmers pass more sophisticated information to classes that "consume" it.
+			
+			#One thing to keep in mind is that annotations were added to the language some years after the standard library was originally designed. If annotations had been in the language from the start, it is doubtful that Serializable would have been an interface, it probably would have been an annotation.#
 ---> Spring Security (Authentication Provider switch from LDAP to Database and vice versa)
 
 ---> Printing Java Object with no toString overriden -:
