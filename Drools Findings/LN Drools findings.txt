@@ -599,3 +599,14 @@ CK:
 		Sysout(someObject) prints com.some.package.ClassName@*alphanumericString*
 		Sysout(someObject.hashCode()) prints an integer 3210992
 		convert 3210992 to hex and you will get *alphanumericString*
+---> Creating Immutable classes 
+		
+---> The JIT Compiler -:
+		In the beginning a compiler was responsible for turning a high level language into machine instrcutions, which would then be linked by a linker to an executable (i.e. compiled all the code into machine language before the program is first run).
+		
+		then at one point in evolution of languages, compilers would compile a high-level language into an intermediate pdeudo-code ( like bytecode), which would then be interpreted by an interpreter to run your program.This eliminated the machine instructions generation and liknking to executable even before program is run and this allowed these languages to be protable to multiple operating systems and hardware platforms.
+
+		Pascal was one of the first Java and C## are recent examples.
+		A Just-In-Time compiler is a feature of the run-time interpreter, that instead of interpreting bytecode every time a method is invoked, will compile the byte-code into the machine code instructions of the underlying running machine.
+		
+		Ideally the efficiency of running the bytecode will overcome the inefficiency of recompiling the program every time it runs.
