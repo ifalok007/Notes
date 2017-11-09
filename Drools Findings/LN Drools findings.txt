@@ -595,3 +595,7 @@ CK:
 		A safe string is one with word chars [a-zA-Z_0-9] or white space char [\s] or UEL control chars [/=?&] or a dot(.).Percent signs are a risk because browser will interpret %27 as a single quite which can artificially truncate strings. 
 ---> Marker Interfaces and Its uses (TIAA interview)
 ---> Spring Security (Authentication Provider switch from LDAP to Database and vice versa)
+---> Printing Java Object with no toString overriden -:
+		Sysout(someObject) prints com.some.package.ClassName@*alphanumericString*
+		Sysout(someObject.hashCode()) prints an integer 3210992
+		convert 3210992 to hex and you will get *alphanumericString*
