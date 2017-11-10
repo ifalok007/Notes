@@ -460,7 +460,7 @@ CK:
 		Functions are computed values and cannot perform permanent environmental changes to SQL Server (i.e. no INSERT or UPDATE statements allowed).
 
 		A Function can be used inline in SQL Statements if it returns a scalar value or can be joined upon (ex. left join, inner join etc) if it returns a result set.
-		
+		The return value of a function can either be a scalar (single) value or a table (using Table variable).
 		+---------------------------------+----------------------------------------+
 		| Stored Procedure (SP)           | Function (UDF - User Defined           |
 		|                                 | Function)                              |
@@ -624,3 +624,13 @@ CK:
 		A Just-In-Time compiler is a feature of the run-time interpreter, that instead of interpreting bytecode every time a method is invoked, will compile the byte-code into the machine code instructions of the underlying running machine.
 		
 		Ideally the efficiency of running the bytecode will overcome the inefficiency of recompiling the program every time it runs.
+		
+---> Database Indexing and How does it help to speed up data retrieval :
+		
+---> Size of a reference variable in JAVA :
+		on 32bit JVM its 32 bits on 64bit JVM its #32bit# but can be changed to 64bit using deactivating configuration for Compressed Ordinary Object Pointers (-XX:-UseCompressedOops).
+---> SQL Server 'System Stored Procedure' -:
+		to get a desciption of a table in oracle we used to call 'desc table_name', but in sql server there is no desc command.In sql server we use Systemm Stored Procedures for such functions , for ex,
+					#exec sp_columns table_name# -> returns column information for a table
+					#exec sp_help table_name# -> gives table definitions which includes (column information, any indexes on columns of the table, constraints on the table, which table is referencing this table as FK container etc.)
+					#sp_executesql# -> 
