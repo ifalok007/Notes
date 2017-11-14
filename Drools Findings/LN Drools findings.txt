@@ -202,6 +202,18 @@ CK:
 				}
 	---> @Transactional
 			annotation attributes -: readOnly:true/false, transactionPropagation :../.., isolation:read_committed/read_uncommitted/repeatable_read
+			
+			---> @Transactional(propagation=Propagation.REQUIRED)
+						If you need a laymans explanation of the use beyond that provided in the Spring Docs
+						Consider this code...
+							class Service {
+								@Transactional(propagation=Propagation.REQUIRED)
+								public void doSomething() {
+									// access a database using a DAO
+								}
+							}
+							When doSomething() is called it knows it has to start a Transaction on the database before executing. If the caller of this method has already started a Transaction then this method will use that same physical Transaction on the current database connection.
+							This @Transactional annotation provides a means of telling your code when it executes that it must have a Transaction. It will not run without one, so you can make this assumption in your code that you wont be left with incomplete data in your database, or have to clean something up if an exception occurs.
 	---> @OneToMany and @ManyToOne
 			@OneToMany(mappedBy="forignkey_field_name_not_table_column_name",fetch=FetchType.EAGER,cascade=CascadeType.ALL)
 			
@@ -574,7 +586,7 @@ CK:
 		extra sprint to clear all technical debt of last sprints 
 		
 ---> Strategy Pattern	
-		eccapsulate strategy (behaviour that changes )
+		encapsulate strategy (behaviour that changes )
 ---> Oopen/close principle (Object Oriented Pricipal)
 
 ---> package-info.java file		
@@ -597,7 +609,7 @@ CK:
 		
 ---> XSS UNSAFE PATTERN :
 		Pattern.compile("[^-+|/\\w,\\.\t ]")
-		A safe string is one with word chars [a-zA-Z_0-9] or white space char [\s] or UEL control chars [/=?&] or a dot(.).Percent signs are a risk because browser will interpret %27 as a single quite which can artificially truncate strings. 
+		A safe string is one with word chars [a-zA-Z_0-9] or white space char [\s] or URL control chars [/=?&] or a dot(.).Percent signs are a risk because browser will interpret %27 as a single quite which can artificially truncate strings. 
 		
 ---> Marker Interfaces and Its uses (TIAA interview)
 		A marker interface must be empty and implementing it is meant to imply some special treatment of implementing class but it is incorrect that JVM or compiler would treat the object of the class differenty.#It has nothing to do with the compiler or the JVM#, if it was true then to write our own marker interface would require teaching compiler how to treat the object of the class implementing nw interface.
@@ -613,7 +625,12 @@ CK:
 		Sysout(someObject.hashCode()) prints an integer 3210992
 		convert 3210992 to hex and you will get *alphanumericString*
 		
----> Creating Immutable classes 
+---> Creating Immutable classes
+		declare as final (so that no extending allowed)
+		declare instance fields private and final
+		initialize instance variable in constructor
+		return copy/clone of data from getter methods
+		no setter methods
 		
 ---> The JIT Compiler -:
 		In the beginning a compiler was responsible for turning a high level language into machine instrcutions, which would then be linked by a linker to an executable (i.e. compiled all the code into machine language before the program is first run).
