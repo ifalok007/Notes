@@ -643,6 +643,7 @@ CK:
 		Ideally the efficiency of running the bytecode will overcome the inefficiency of recompiling the program every time it runs.
 		
 ---> Database Indexing and How does it help to speed up data retrieval :
+		---> Clustered Index and Non-Clustered Index
 		
 ---> Size of a reference variable in JAVA :
 		on 32bit JVM its 32 bits on 64bit JVM its #32bit# but can be changed to 64bit using deactivating configuration for Compressed Ordinary Object Pointers (-XX:-UseCompressedOops).
@@ -651,3 +652,15 @@ CK:
 					#exec sp_columns table_name# -> returns column information for a table
 					#exec sp_help table_name# -> gives table definitions which includes (column information, any indexes on columns of the table, constraints on the table, which table is referencing this table as FK container etc.)
 					#sp_executesql# -> 
+					
+---> difference between @Component, @Repository & @Service annotations in Spring :
+		They are almost the same - all of them mean that the class is a Spring bean. @Service, @Repository and @Controller are specialized @Components. You can choose to perform specific actions with them. For example:
+			-> @Controller beans are used by spring-mvc
+			-> @Repository beans are eligible for persistence exception translation
+		Now you may ask why separate them: (I assume you know AOP-Aspect Oriented Programming)
+
+		Let's say you want to Monitors the Activity of the DAO Layer only. You will write an Aspect (A class) class that does some logging before and after every method of your DAO is invoked, you are able to do that using AOP as you have three distinct Layers and are not mixed.
+
+		So you can do logging of DAO "around", "before" or "after" the DAO methods. You could do that because you had a DAO in the first place. What you just achieved is Separation of concerns or tasks.
+		---> @Bean 
+		Indicated that a method produces a bean which will be managed by Spring container. @bean technically used inside class annotated with @Configuration.
