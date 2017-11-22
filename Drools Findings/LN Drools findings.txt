@@ -575,8 +575,8 @@ CK:
 				 ByteArrayOutputStream baos;
 				 int iterations;
 			
----> SQL Server datatype datetime2(fractional seconds precision)
-		Defines a date that is combined with a time of day that is based on 24-hour clock. datetime2 can be considered as an extension of the existing datetime type that has a larger date range, a larger default fractional precision, and optional user-specified precision
+---> SQL Server datatype datetime2(fractional_seconds_precision)
+		Defines a date that is combined with a time of day that is based on 24-hour clock. datetime2 can be considered as an extension of the existing datetime type, datetime2 has a larger date range, a larger default fractional precision, and optional user-specified precision.datetime2(n) is aligned with sql standards and is portable.
 		
 ---> All About floats
 		if a parent container has all the floating childs, the height of parent element would collapse to nothing.
@@ -664,3 +664,5 @@ CK:
 		So you can do logging of DAO "around", "before" or "after" the DAO methods. You could do that because you had a DAO in the first place. What you just achieved is Separation of concerns or tasks.
 		---> @Bean 
 		Indicated that a method produces a bean which will be managed by Spring container. @bean technically used inside class annotated with @Configuration.
+---> returnning resultset from Stored Procedure:
+		
