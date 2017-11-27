@@ -391,9 +391,7 @@ CK:
 			beanPropertySqlParametreSource.registerSqlType("empRole", Types.VARCHAR)
 		to tell jdbcTemplate to map empRole as varchar is sql query paramter.
 		i think enum should override toString() to make it work.not sure though
----> Java 8 collection streams and Stream Collectors :
-		Concating two Lists 
-			Stream.concat(list_one.stream(), list_two.stream()).collect(Collector.toList())
+	
 ---> Java 8 method references :
 		You use lambda expressions to create anonymous methods. Sometimes, however, a lambda expression does nothing but call an existing method. In those cases, it's often clearer to refer to the existing method by name. Method references enable you to do this; they are compact, easy-to-read lambda expressions for methods that already have a name.
 			Arrays.sort(rosterAsArray,
@@ -460,7 +458,6 @@ CK:
 
 ---> @Transactional,
 
----> Stream Filters,
 
 ---> OSGi vs Maven,
 
@@ -643,6 +640,7 @@ CK:
 		Ideally the efficiency of running the bytecode will overcome the inefficiency of recompiling the program every time it runs.
 		
 ---> Database Indexing and How does it help to speed up data retrieval :
+	
 		---> Clustered Index and Non-Clustered Index
 		
 ---> Size of a reference variable in JAVA :
@@ -665,4 +663,45 @@ CK:
 		---> @Bean 
 		Indicated that a method produces a bean which will be managed by Spring container. @bean technically used inside class annotated with @Configuration.
 ---> returnning resultset from Stored Procedure:
+---> Java 8 Stream API usefull methods and uses
+		---> Creating Stream	
+			1. Creating Empty Stream	
+				Stream<String> emptyStream = Stream.empty().
+			2. Creating Stream of Collections
+				Collection<String> collection = Arrays.asList("a","b","c");
+				Stream<String> stream = collection.stream();
+			3. Creating Stream from Arrays 
+				Stream<String> streamOfArrays = Stream.of("a","b","c")
+								or
+				String[] st = new String[]{"a","b","c"};
+				Stream<String> stream = Arrays.stream(st);
+			4. Stream of primitives 
+				as Stream<T> is a generic type, primitive type can not be passed to it hence java 8 guyz had to introduce 3 new classes for primitive streams.
+					IntStream, LongStream, DoubleStream
+			5. Stream of Files
+				Files class in java.nio package allows creating Stream<String> of text files using lines() method, each line of the text file will become element of stream.
+				Path path = new Path("C:\\file.txt");
+				Stream<String> stream = Files.lines(path); we can pass charset as second argument to lines function.
+				
+		---> Using Stream
+			1. Stream.of("a", "b", "c").filter(element -> element.contains("b")).findAny();
+			2. Stream.of("a", "b", "c").filter(element -> element.contains("b")).findFirst();
+				Stream<T> filter(Predicate<? super T> predicate)
+				Optional<T> findAny(), Optional<T> findFirst()
+			3. Stream.of("abcd", "bbcd", "cbcd").skip(1)
+				Stream<T> skip(long n) returns new stream ignoring first n elements of the stream.
+			4. Arrays.asList("abc1", "abc2", "abc3").stream().skip(1).map(element -> element.substring(0, 3)).sorted().count();
+				<R> Stream<R> map(Function(<? super T>,<? extends R>) mapper) produces stream by applying mapper to each element of the stream (T is type of input, R is type of return)
+				Stream<T> sorted() returns naturally sorted stream of elements
+				Stream<T> sorted(Comparator<? super T> comparator)  returns comparator sorted stream of elements
+				long count() returns count of elements in the stream
+			5. Concating two Lists 
+				Stream.concat(list_one.stream(), list_two.stream()).collect(Collector.toList())
+		---> Reduction of Stream using reduce() and collect() methods
+		---> Storing a reference of stream and reuse it
+				we can store stream reference and reuse it untill we call any terminal operation on it, But an attempt to reuse the same reference after calling the terminal operation will trigger the IllegalStateExceptio.
+						
+---> @Configuration in Spring 
+---> Spring Data JPA 
+---> Java Generics
 		
