@@ -697,6 +697,10 @@ CK:
 				long count() returns count of elements in the stream
 			5. Concating two Lists 
 				Stream.concat(list_one.stream(), list_two.stream()).collect(Collector.toList())
+			6. Check if list contains duplicates :	
+				list.size() != list.stream().distinct().count();
+			7. remove people with same name from a list of Peoples
+				
 		---> Reduction of Stream using reduce() and collect() methods
 		---> Storing a reference of stream and reuse it
 				we can store stream reference and reuse it untill we call any terminal operation on it, But an attempt to reuse the same reference after calling the terminal operation will trigger the IllegalStateExceptio.
@@ -704,4 +708,19 @@ CK:
 ---> @Configuration in Spring 
 ---> Spring Data JPA 
 ---> Java Generics
+
+		---> PECS (Producer extends Consumer super)
+			"PECS" is from the collection's point of view. If you are only pulling items from a generic collection, it is a producer and you should use extends; if you are only stuffing items in, it is a consumer and you should use super. If you do both with the same collection, you shouldn't use either extends or super.
+			
+			Suppose you have a method that takes as its parameter a collection of things, but you want it to be more flexible than just accepting a Collection<Thing>.
+
+			Case 1: You want to go through the collection and do things with each item.
+			Then the list is a producer, so you should use a Collection<? extends Thing>.
+
+			The reasoning is that a Collection<? extends Thing> could hold any subtype of Thing, and thus each element will behave as a Thing when you perform your operation. (You actually cannot add anything to a Collection<? extends Thing>, because you cannot know at runtime which specific subtype of Thing the collection holds.)
+
+			Case 2: You want to add things to the collection.
+			Then the list is a consumer, so you should use a Collection<? super Thing>.
 		
+---> Java Script | Array.unshift(a...n):
+		adds one or more elements to the begining of an array.		
