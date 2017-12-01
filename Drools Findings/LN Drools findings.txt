@@ -718,7 +718,16 @@ CK:
 			6. Check if list contains duplicates :	
 				list.size() != list.stream().distinct().count();
 			7. remove people with same name from a list of Peoples
-				
+				1.  /* distinct() takes help of equals methods to find distincts*/
+				    List<Person> uniqueByDistinct = persons.stream().distinct().collect(Collectors.toList());
+			    2.  Set<Person> uniquePersons = new HashSet<Person>();
+					persons.stream().allMatch(uniquePersons::add);
+				3.  // below will end up in IllegalArgument exception (duplicate key)
+					Map<String, Person> emp = persons.stream().collect(Collectors.toMap((Person p) -> p.id,(Person p)-> p ));
+					Collection<Person> personList = emp.values();
+				4. //to handle duplicate keys in toMap() function , supply a merger function as 3rd arg to toMap()
+					Map<String, Person> emp = persons.stream().collect(Collectors.toMap((Person p) -> p.id, (Person p)-> p ), (old, new)-> old);
+					Collection<Person> personList = emp.values();
 		---> Reduction of Stream using reduce() and collect() methods
 		---> Storing a reference of stream and reuse it
 				we can store stream reference and reuse it untill we call any terminal operation on it, But an attempt to reuse the same reference after calling the terminal operation will trigger the IllegalStateExceptio.
