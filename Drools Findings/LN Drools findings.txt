@@ -22,24 +22,42 @@ Drools, Rule Engine..
 ---> Spring AOP :
 	Cross Curring Concerns 
 		The majority of the aplications we design will contain common functionality that spans layers and tiers.This functionality typically supports operations such authentication, authorization, caching, communication, exception management, Logging, instrumentation and validation.Such functionlaity is generally described as cross-cutting concern because it affects the entire application and should be centralized in one location in the code where possible.For example, If code that generates log entries and writes to the application logs is scattered throughout your layers and tiers, and the requirement related to these concerns change (such as logging to different location), you may have to update the relevant code throughout the entire system.Instead, If you centralize the logging code, you can chnage the behaviour bychanging the code in the just one location.
-		
+	
 		In Spring a pointcut expression is used to determine whether advice needs to be executed or not 
 			for ex, 	
 				@PointCut("within(com.journaldev.spring.service.*)")
-			sp there  are chances that these advices may get applied to some beans where its not intended.
-			Thats why we create a custome annotation and annotae the method where we want the advice to be applied.
-				pulic @interface Loggable{
-				
+				so there  are chances that these advices may get applied to some beans where its not intended.
+				Thats why we create a custome annotation and annotae the method where we want the advice to be applied.
+				Creating custom annotation :
+				@Retention(RetentionPolicy.RUNTIME)
+				@Target({ElementType.METHOD})
+				pulic @interface SomeSecurityCheck{
+					TypeOfSecurityCheck passItAsArg();
+					// this annotation indicates that a security check is needed before calling the annotated method
 				}
 				
+				below class is an Advice( the class which handles security access actually)
 				@Aspect 
 				public class EmployeeAnnotationAspect{
-					@Before("@annotation(com.journaldev.spring.aspect.Loggable)")
-					public void myAdvice(){
-						System.out.println("executing my advice");
+					/*
+					*	this method intercepts SomeSecurityCheck annotation and performs a security check 
+					*/
+					@Before("@annotation(fully.qualified.package.name.SomeSecurityCheck)")
+					public void checkForSecurityAccess(JoinPoint joinPoint){
+						//get the security passed as argument to security check annotation
+						Object[] args = joinPoint.getArgs();
+						//performs actual security check on currently logged in user with security type passed in as argument to the SecurityCheck annotation
+						performSecurityCheck(getCurrentUser(),args);
 					}
 				}
-	
+				the Client class
+				@Service
+				public class SomeService{
+					@SomeSecurityCheck(passItAsArg =  SomeEmumeration.ENUM_NAME)
+					public int deleteSomeImportantDataFromDb(){
+						//delete
+					}
+				}
 ---> Spring fundamentals :
 
 
@@ -707,6 +725,7 @@ CK:
 						
 ---> @Configuration in Spring 
 ---> Spring Data JPA 
+		Spring Manages DAO classes as DAOs have lots of bioler plate code.
 ---> Java Generics
 
 		---> PECS (Producer extends Consumer super)
@@ -715,12 +734,12 @@ CK:
 			Suppose you have a method that takes as its parameter a collection of things, but you want it to be more flexible than just accepting a Collection<Thing>.
 
 			Case 1: You want to go through the collection and do things with each item.
-			Then the list is a producer, so you should use a Collection<? extends Thing>.
+				Then the list is a producer, so you should use a Collection<? extends Thing>.
 
-			The reasoning is that a Collection<? extends Thing> could hold any subtype of Thing, and thus each element will behave as a Thing when you perform your operation. (You actually cannot add anything to a Collection<? extends Thing>, because you cannot know at runtime which specific subtype of Thing the collection holds.)
+				The reasoning is that a Collection<? extends Thing> could hold any subtype of Thing, and thus each element will behave as a Thing when you perform your operation. (You actually cannot add anything to a Collection<? extends Thing>, because you cannot know at runtime which specific subtype of Thing the collection holds.)
 
 			Case 2: You want to add things to the collection.
-			Then the list is a consumer, so you should use a Collection<? super Thing>.
+				Then the list is a consumer, so you should use a Collection<? super Thing>.
 		
 ---> Java Script | Array.unshift(a...n):
 		adds one or more elements to the begining of an array.		
