@@ -752,3 +752,7 @@ CK:
 		
 ---> Java Script | Array.unshift(a...n):
 		adds one or more elements to the begining of an array.		
+		
+---> Select such departments which has more than 5 employees in it (Employee n-----1 Department)
+		---> WHERE vs HAVING 
+			we can use aggregate functions in where clause. HAVING is like WHERE with aggregate function.
