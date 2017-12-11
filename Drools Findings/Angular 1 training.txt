@@ -1,0 +1,54 @@
+---> 	Angular Training
+		1. Introduction to Angular JS
+				Angular Bootstraping (manual and automatic)
+					---> manual:	(using angular.botstrap() function)
+							dont use ng-app with this.
+							angular.element(document).ready(  //	required as angular bootstrapping must start when DOM content is fully loaded. 	
+								function () { 
+									angular.bootstrap(document, ['myApp']); 
+								}
+							);
+					---> automatic	
+							using ng-app
+				Module Loading 
+					---> Configuration blocks: - get executed during the provider registrations and configuration phase. Only providers and constants can be injected into configuration blocks. This is to prevent accidental instantiation of services before they have been fully configured.
+					---> Run blocks: - get executed after the injector is created and are used to kickstart the application. Only instances and constants can be injected into run blocks. This is to prevent further system configuration during application run time.
+					It is executed after all of the services have been configured and the injector has been created
+					---> Injector
+					---> Provider
+				Steps
+					1. Scripts downoading(request blocking parsing) 
+					2. looks for ng-app DOMCOntentLoaded Event is emitted or document.readyState is set to 'complete' when angular.js is evealuated
+					3. upon finding ng-app directive get root module name and load all dependent modules
+					4. Create an application injector which will be responsible for injecting dependencies
+					5. Start compilation of DOM using $compile treating ng-app as the root of compilation
+				
+		2.	Directive and Components
+		3.	Routing
+			---> State Routing 
+			---> 
+		4.	Session and Local Storage
+		5. 	Best Practices (From john papa style guide)
+		
+				
+---> The DOMContentLoaded event :
+		is fired when the initial HTML document has been completely loaded and parsed, #without waiting for stylesheets, images, and subframes to finish loading#. A very different event #load# should be used only to #detect a fully-loaded page#. It is an incredibly popular mistake to use load where #DOMContentLoaded# would be much more appropriate, so be cautious.
+
+---> Injector :
+		is responsible for retreiving objects instances registered with provider.
+		---> injection annotation
+				module.service('serviceName',function(depedency1,dependency2){
+					//does not work with minification or obfuscation
+				});
+				module.service('serviceName',["depedency1","dependency2", function(depedency1,dependency2){
+					//works with minification or obfuscation
+				}]);
+				module.service('serviceName',serviceName)
+				function serviceName(depedency1,dependency2){
+					this.value = 10;
+					this.getValue = function(){
+						return this.value;
+					};
+				}
+				
+				serviceName.$inject = ['depedency1','dependency2']
