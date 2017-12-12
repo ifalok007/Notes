@@ -52,3 +52,13 @@
 				}
 				
 				serviceName.$inject = ['depedency1','dependency2']
+---> Providers :
+
+		Notice that the unicorn provider is injected into the config function. This injection is done by a provider injector which is different from the regular instance injector, in that it instantiates and wires (injects) all provider instances only.
+
+		During application bootstrap, before AngularJS goes off creating all services, it configures and instantiates all providers. We call this the configuration phase of the application life-cycle. During this phase, services aren't accessible because they haven't been created yet.
+
+		Once the configuration phase is over, interaction with providers is disallowed and the process of creating services starts. We call this part of the application life-cycle the run phase.
+		
+---> Factory Functions:
+		In JavaScript, any function can return an object. When it does so without the new keyword, it’s a factory function.
