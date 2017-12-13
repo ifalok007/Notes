@@ -24,6 +24,50 @@
 					5. Start compilation of DOM using $compile treating ng-app as the root of compilation
 				
 		2.	Directive and Components
+				---> isolating the scope of a directive :
+						problem : We can only use directives which dont have isolated scope once within a given scope.
+						separate the scope inside a directive from the scope outside, and then map the outer scope to a directive's inner scope
+						
+						angular.module('docsIsolateScopeDirective', [])
+							.controller('Controller', ['$scope', function($scope) {
+							  $scope.naomi = { name: 'Naomi', address: '1600 Amphitheatre' };
+							  $scope.igor = { name: 'Igor', address: '123 Somewhere' };
+							}])
+							.directive('myCustomer', function() {
+							  return {
+								restrict: 'E',
+								scope: {
+								  customerInfo: '=bindToThis' // or just '='
+								},
+								templateUrl: 'my-customer-iso.html'
+							  };
+							});
+							
+						So the isolate scope of the directive isolates everything except models that you've explicitly added to the scope: {} hash object.
+						Normally, a scope prototypically inherits from its parent. An isolated scope does not.
+						
+				---> The link function (Directive that Manipulates the DOM)
+						function link(scope, element, attrs, controller, transcludeFn) { ... }
+						https://plnkr.co/edit/ie3HVmL3lTPfGlkc8KWT?p=preview
+				---> The transclusion (Directive that Wraps Other Elements)
+						transclude:true/element
+						
+						pass in an entire template rather than a string or an object
+						
+						for ex : dialog box should be able to wrap any arbitrary content
+						
+						https://plnkr.co/edit/oFaNJn5KThflOOmcrQzf?p=preview
+						
+						This behavior makes sense for a directive that wraps some content, because otherwise you'd have to pass in each model (those models may have different structure) you wanted to use separately.
+				
+				---> defining output behaviour in directives:
+						using & binding : & binding allows a directive to trigger evaluation of an expression in the context of the original scope.
+						
+						for ex : add buttons to our previous dialog box, and allow someone using the directive to bind their own behavior to it
+						<my-dialog ng-hide="dialogIsHidden" on-close="hideDialog(message)">
+							Check out the contents, {{name}}!
+						</my-dialog>
+						https://plnkr.co/edit/ovXWXkHjt3MvfVQkPGut?p=preview
 		3.	Routing
 			---> State Routing 
 			---> 
