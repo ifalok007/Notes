@@ -18,7 +18,7 @@
 					---> Provider
 				Steps
 					1. Scripts downoading(request blocking parsing) 
-					2. looks for ng-app DOMCOntentLoaded Event is emitted or document.readyState is set to 'complete' when angular.js is evealuated
+					2. looks for ng-app (when DOMCOntentLoaded Event is emitted or document.readyState is set to 'complete' when angular.js is evealuated)
 					3. upon finding ng-app directive get root module name and load all dependent modules
 					4. Create an application injector which will be responsible for injecting dependencies
 					5. Start compilation of DOM using $compile treating ng-app as the root of compilation
