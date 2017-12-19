@@ -760,8 +760,3 @@ CK:
 		---> WHERE vs HAVING 
 			we can use aggregate functions in where clause. HAVING is like WHERE with aggregate function.
 			
----> 	Angular Training
-		1. Introduction to Angular JS
-		2.	Directive and Components
-		3.	Routing
-		4.	Session and Local Storage
