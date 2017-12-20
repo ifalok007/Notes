@@ -760,11 +760,6 @@ CK:
 		---> WHERE vs HAVING 
 			we can use aggregate functions in where clause. HAVING is like WHERE with aggregate function.
 			
----> 	Angular Training
-		1. Introduction to Angular JS
-		2.	Directive and Components
-		3.	Routing
-		4.	Session and Local Storage
 ---> Database Execution Plan
 
 	mysql> tee explain select * from album alb where alb.ArtistId in (select ArtistId from artist);
@@ -791,3 +786,4 @@ I will be glad to serve you in all possible ways. Keep in touch and feel free to
 May god bless you all with health, wealth , prosperity and happiness.
 
 Thanks & Regards,
+
