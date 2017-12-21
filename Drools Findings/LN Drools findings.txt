@@ -771,19 +771,16 @@ CK:
 	|  1 | SIMPLE      | alb    | ref   | ArtistId      | ArtistId | 4       | councellink.artist.ArtistId |    1 | NULL        |
 	+----+-------------+--------+-------+---------------+----------+---------+-----------------------------+------+-------------+
 	2 rows in set (0.00 sec)
-
-Dear All,
- 
-As Friday 22th Dec 2017, would be my last day at work, I want to bid farewell to all wonderful people whom I interacted with, during my 3.1 yrs Journey with Cybage.
-It was an amazing experience working with such supportive people and team. I have learnt tremendously. Professionally I have gained a lot of knowledge and I shall cherish this as one of the most satisfying phases in my career.
- 
-Though I got very limited time interacting with my current team; trust me I will always cherish all the learning I got from each one of you.
-
-I will always appreciate the guidance and support provided by all.
- 
-I will be glad to serve you in all possible ways. Keep in touch and feel free to contact me at sanket081989@gmail.com or 91-8866422574.
- 
-May god bless you all with health, wealth , prosperity and happiness.
-
-Thanks & Regards,
-
+---> 
+	REM --- comment
+	SET dir1 = "path"
+	SET dir2 = "path2"
+	
+	GOTO %1
+	
+	:all
+		svn update & svn cleanup && cd /d %dir1% & DEL "someFileNameatDir1" && cd /d "dir2" & mvn clean && mvn install && start cmd.exe /k "cd /d %dir3%" && timeout /t 10 && java -Xdebug -Xrunjdwp:server=y,transpost=dt_socket,address=8998,suspend=n -jar name_of_jar.jar & goto exit
+	:dbMigrateion(liquibase)
+	:serverStartupOnly 
+	:exit
+		pause
