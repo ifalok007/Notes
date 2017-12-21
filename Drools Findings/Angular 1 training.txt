@@ -8,6 +8,7 @@
 									angular.bootstrap(document, ['myApp']); 
 								}
 							);
+							angular.bootstrap(element, [modules], [config]);
 					---> automatic	
 							using ng-app
 				Module Loading 
@@ -16,6 +17,9 @@
 					It is executed after all of the services have been configured and the injector has been created
 					---> Injector
 					---> Provider
+							Once the provider finishes registering and configuring all the components and services registered with module, $injector is instatiated which with the help of $provider gets instances of services and does dependency injection.
+							One of its use can be demonstrated in unit testing any angular services.
+							https://plnkr.co/edit/ZMiL6VgoesgP14JB5WcD
 				Steps
 					1. Scripts downoading(request blocking parsing) 
 					2. looks for ng-app (when DOMCOntentLoaded Event is emitted or document.readyState is set to 'complete' when angular.js is evealuated)
@@ -69,9 +73,22 @@
 						</my-dialog>
 						https://plnkr.co/edit/ovXWXkHjt3MvfVQkPGut?p=preview
 		3.	Routing
-			---> State Routing 
-			---> 
+			---> State Routing (ui-router, $stateProvider) 
+			---> URL based routing (ngRoute, $routeProvider)
+			---> the difference
+					AngularUI Router is a routing framework for AngularJS, which allows you to organize the parts of your interface into a state machine. Unlike the $route service in Angular core, which is organized around URL routes, UI-Router is organized around states, which may optionally have routes, as well as other behavior, attached.
+
+					States are bound to named, nested and parallel views, allowing you to powerfully manage your application's interface.
+
+					Neither of them is better, you will have to chose the most appropriate for your project.
+
+					However, if you plan to have complex views in your application and you would like to deal with the "$state" notion. I recommend you to chose ui-router.
+					
 		4.	Session and Local Storage
+				#sessionStorage# (as the name suggests) is only available for the duration of the browser session (and is deleted when the #tab or window# is closed) but survives page reloads.
+				
+				#Local Storage# persists until explicitly deleted.Changes made are saved and available for all current and future visits to the site (same origin site only)
+				
 		5. 	Best Practices (From john papa style guide)
 		
 				
@@ -97,7 +114,7 @@
 				
 				serviceName.$inject = ['depedency1','dependency2']
 ---> Providers :
-
+		Providers are a base component for factory, service, constant, value
 		Notice that the unicorn provider is injected into the config function. This injection is done by a provider injector which is different from the regular instance injector, in that it instantiates and wires (injects) all provider instances only.
 
 		During application bootstrap, before AngularJS goes off creating all services, it configures and instantiates all providers. We call this the configuration phase of the application life-cycle. During this phase, services aren't accessible because they haven't been created yet.
